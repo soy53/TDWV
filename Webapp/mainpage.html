@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Hello</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="../static/CSS/style.css" type="text/css"/>
+    <!-- <link rel="stylesheet" href="CSS/style.css" type="text/css"/> -->
+    <!-- <link rel="stylesheet" href="style.css" type="text/css"/> -->
+</head>
+
+<!-- html페이지에서 스타일 적용은 되는데, 링크를 통한 적용은 안된다.. 
+    <style>
+    h1{
+        color: red;
+    }
+</style> -->
+
+
+<h1>Welcome!</h1>
+
+
+<body>
+    <!-- 사진 입력란, 
+    method는 http method로, post 방식으로 받는다
+    enctype은 인코딩 여부를 결정하는 attribute인데, 이미지나 파일은 multipart/form-data를 이용한다.-->
+    <!-- form은 사용자가 정보를 서버에 전달할 때 사용한다 action은 어디로 정보를 보낼지 주소를 지정해준다.-->
+    <form method='post' enctype="multipart/form-data" action="http://127.0.0.1:5000/apply">
+        <!-- class는 태그들을 그룹지을 때 사용한다. 당연히 여러 태그에 사용할 수 있다.-->
+        <div class="divPosition">
+            <!-- label은 명시적으로 label안의 텍스트가 의미하는 바가 무엇인지 알려준다 
+            여기서 for는 어느 태그에 해당하는 label인지 알려주는 역할을 하며, for에 
+            해당 태그의 id를 입력한다. 코드의 경우 chooseFile id를 가진 태그의 label이며
+            해당 id는 아래 input의 id임을 확인할 수 있다. 만약, for attribute를 사용하지 않고 label을 붙이려면
+            label tag안에 label을 지정하고 싶은 tag를 붙이면 된다.-->
+            <p>
+                <label for="upimgFile1">
+                    "입힐 사람의 이미지 파일을 올려주세요!"
+                </label>
+                <!-- 실제 데이터를 입력시키는 태그 id는 html에서 참조하고, name은 form에서 정보 전송시참조하는 식별자다 
+                accept는 해당 포멧의 파일만 받는다는 뜻(아래는 모든 이미지 파일 확장자를 받는다)이며, 
+                onchange는 javascript에서 사용하는 함수로 input 태그의 포커스를 벗어났을 때(입력 창에서 벗어났을 때?)
+                발생하는 이벤트이다.-->
+                <input type="file" id="upimgFile1" name="person" accept="image/*" onchange="loadFile(this)">
+            </p>
+            <p>
+                <label for="upimgFile2">
+                    "입을 의상의 이미지 파일을 올려주세요!"
+                </label>
+                <input type="file" id="upimgFile2" name="cloth" accept="image/*" onchange="loadFile(this)">
+            </p>
+            <p>
+                <input type="submit" value="확인">
+            </p>
+
+        </div>
+
+    </form>
+</body>
+
+</html>
